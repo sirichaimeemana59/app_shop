@@ -1,15 +1,12 @@
-import 'dart:convert';
-
-import 'package:app_shop/shop/orderList.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:footer/footer.dart';
 
-class OrderProductList extends StatefulWidget {
+class OrderList extends StatefulWidget {
   @override
-  _OrderProductList createState() => _OrderProductList();
+  _OrderListState createState() => _OrderListState();
 }
 
-class _OrderProductList extends State<OrderProductList> {
+class _OrderListState extends State<OrderList> {
   List orderList = [];
   int summaryPrice = 0;
   int price = 0;
@@ -20,9 +17,9 @@ class _OrderProductList extends State<OrderProductList> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow.shade800,
-        title: Text('Order'),
+        title: Text('Check Out'),
         actions: [
-          showOrder(),
+          //showOrder(),
         ],
       ),
       body: createListView(),
@@ -114,95 +111,10 @@ class _OrderProductList extends State<OrderProductList> {
                   ),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.all(12),
-                child: Row(
-                  children: <Widget>[
-                    InkWell(
-                      onTap: () {
-                        if (orderList[index]['numberofitems'] > 1) {
-                          setState(() {
-                            orderList[index]['numberofitems'] =
-                                orderList[index]['numberofitems'] - 1;
-                            price = int.parse(orderList[index]['price']) -
-                                int.parse(orderList[index]['priceTo']);
-                            orderList[index]['price'] = price.toString();
-                            // orderList[index]['price'] = int.parse(
-                            //     orderList[index]['price'] -
-                            //         orderList[index]['price']);
-                          });
-                        }
-                      },
-                      child: Container(
-                        width: 30,
-                        child: Icon(
-                          Icons.remove_circle_outline,
-                          color: Colors.blue.shade800,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(15),
-                      width: 40,
-                      child: Center(
-                          child: Text(
-                        orderList[index]['numberofitems'].toString(),
-                        style: TextStyle(fontSize: 25),
-                      )),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          orderList[index]['numberofitems'] =
-                              orderList[index]['numberofitems'] + 1;
-                          price = int.parse(orderList[index]['priceTo']) +
-                              int.parse(orderList[index]['price']);
-                          orderList[index]['price'] = price.toString();
-
-                          // print(price);
-                        });
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(right: 5),
-                        width: 30,
-                        child: Icon(
-                          Icons.add_circle_outline,
-                          color: Colors.blue.shade800,
-                          size: 30,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
             ],
           ),
         );
       },
     );
-  }
-
-  Widget showOrder() {
-    return IconButton(
-        icon: Icon(Icons.shopping_basket),
-        onPressed: () async {
-          print(orderList);
-          var materialPageRoute = MaterialPageRoute(
-              builder: (context) => OrderList(),
-              settings: RouteSettings(arguments: orderList));
-          Navigator.push(context, materialPageRoute);
-        });
-  }
-
-  createOrder() async {
-    var order = jsonEncode(orderList);
-    var response = await http.post(
-        Uri.http('127.0.0.1:8000', '/user_create_order'),
-        body: order,
-        headers: {'Content-type': 'application/json'});
-    if (response.statusCode == 200) {
-      print('success');
-    } else {}
   }
 }

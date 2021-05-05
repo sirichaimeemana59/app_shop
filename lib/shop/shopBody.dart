@@ -1,18 +1,10 @@
-//import 'dart:convert';
-
 import 'dart:convert';
-
-import 'package:app_shop/cleass_model/shopList.dart';
 import 'package:app_shop/shop/productShopList.dart';
 import 'package:flutter/material.dart';
-//import 'package:my_app/cleass_model/shopList.dart';
-//import 'package:my_app/shop/categories.dart';
 import 'package:http/http.dart' as http;
-//import 'package:my_app/shop/foodShopList.dart';
 
 // ignore: must_be_immutable
 class ShopBody extends StatefulWidget {
-  //Connect API
   // ignore: deprecated_member_use
   @override
   _ShopBodyState createState() => _ShopBodyState();
@@ -20,7 +12,6 @@ class ShopBody extends StatefulWidget {
 
 class _ShopBodyState extends State<ShopBody> {
   // ignore: deprecated_member_use
-  List<ShopList> shop = List<ShopList>();
   List dataShop = [];
   //End Valiable
   //setState
@@ -105,7 +96,7 @@ class _ShopBodyState extends State<ShopBody> {
           splashColor: Colors.white,
           padding: EdgeInsets.all(1),
           onPressed: () {
-             //print(id);
+            //print(id);
             showFoodList(id);
           },
           child: Container(
