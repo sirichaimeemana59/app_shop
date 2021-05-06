@@ -32,13 +32,11 @@ class _PaymentPageState extends State<PaymentPage> {
             padding: EdgeInsets.all(15),
             onPressed: () {
               orderList.add({"pay": "1"});
-              print(orderList.toString());
-
-              // print(orderList.toString());
-              // var materialPageRoute = MaterialPageRoute(
-              //     builder: (context) => Shipping(),
-              //     settings: RouteSettings(arguments: orderList));
-              // Navigator.push(context, materialPageRoute);
+              //print(orderList.toString());
+              var materialPageRoute = MaterialPageRoute(
+                  builder: (context) => Shipping(),
+                  settings: RouteSettings(arguments: orderList));
+              Navigator.push(context, materialPageRoute);
             },
             child: Center(
               child: Container(

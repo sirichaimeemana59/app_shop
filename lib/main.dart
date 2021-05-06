@@ -1,4 +1,4 @@
-import 'package:app_shop/screen/home.dart';
+import 'package:app_shop/main_menu/mainMenu.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,7 +9,7 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Home(),
+      home: MainMenu(),
     );
   }
 }

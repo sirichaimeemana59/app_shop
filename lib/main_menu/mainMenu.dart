@@ -1,5 +1,6 @@
 import 'package:app_shop/shop/shopList.dart';
 import 'package:flutter/material.dart';
+
 class MainMenu extends StatefulWidget {
   @override
   _MainMenuState createState() => _MainMenuState();
@@ -27,7 +28,7 @@ class _MainMenuState extends State<MainMenu> {
 
   Widget showName(String username) {
     return Text(
-      'Name Customer : $username',
+      'Name Customer : Sirichai',
       style: TextStyle(
           color: Colors.blue.shade600,
           fontWeight: FontWeight.bold,
@@ -117,8 +118,6 @@ class _MainMenuState extends State<MainMenu> {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: AssetImage('images/dog.png'),
-                      //image: NetworkImage(
-                      //'https://pupuphooray.com/wp-content/uploads/2019/03/dog-icon.png'),
                     )),
               ),
               Padding(

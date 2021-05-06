@@ -14,6 +14,11 @@ class _OrderListState extends State<OrderList> {
   Widget build(BuildContext context) {
     final order = ModalRoute.of(context).settings.arguments;
     orderList = order;
+    for (int i = 0; i < orderList.length; i++) {
+      int num1 = int.parse(orderList[i]['price']);
+      totalPrice += num1;
+    }
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow.shade800,
@@ -108,9 +113,9 @@ class _OrderListState extends State<OrderList> {
     return ListView.builder(
       itemCount: orderList.length,
       itemBuilder: (BuildContext context, int index) {
-        totalPrice += int.parse(orderList[index]['price']);
+        //totalPrice += int.parse(orderList[index]['price']);
         //orderList.add('1');
-        print(totalPrice.toString());
+        //print(totalPrice.toString());
         return Container(
           height: 150,
           width: 150,
