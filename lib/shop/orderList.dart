@@ -22,7 +22,78 @@ class _OrderListState extends State<OrderList> {
           //showOrder(),
         ],
       ),
-      body: createListView(),
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            createListView(),
+            Container(
+              height: 150,
+              width: 450,
+              margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+              decoration: BoxDecoration(
+                color: Colors.white70,
+                borderRadius: BorderRadius.circular(6.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.blue.shade600.withOpacity(.3),
+                      offset: Offset(0.0, 8.0),
+                      blurRadius: 2.0),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                  child: Container(
+                                      margin: EdgeInsets.only(
+                                          left: 10, top: 15, bottom: 5),
+                                      child: Text('text'))),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 15, bottom: 5),
+                                  child: Text(
+                                    'Price : ',
+                                  )),
+                              Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 15, bottom: 5),
+                                  child: Text('text')),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 15, bottom: 5),
+                                  child: Text(
+                                    'Amount : ',
+                                  )),
+                              Container(
+                                  margin: EdgeInsets.only(
+                                      left: 10, top: 15, bottom: 5),
+                                  child: Text('text')),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -110,7 +181,7 @@ class _OrderListState extends State<OrderList> {
                     ],
                   ),
                 ),
-              ),
+              )
             ],
           ),
         );
