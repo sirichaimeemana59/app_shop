@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:app_shop/shop/orderList.dart';
+import 'package:app_shop/shop/productShopList.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -21,11 +22,46 @@ class _OrderProductList extends State<OrderProductList> {
       appBar: AppBar(
         backgroundColor: Colors.yellow.shade800,
         title: Text('Order'),
-        actions: [
-          showOrder(),
-        ],
+        actions: [],
       ),
-      body: createListView(),
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            createListView(),
+            Container(
+              height: 100,
+              width: 450,
+              margin: EdgeInsets.only(left: 10, right: 10, top: 10),
+              decoration: BoxDecoration(
+                color: Colors.white70,
+                borderRadius: BorderRadius.circular(6.0),
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.blue.shade600.withOpacity(.3),
+                      offset: Offset(0.0, 8.0),
+                      blurRadius: 2.0),
+                ],
+              ),
+              child: Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    checkOutButton(),
+                    SizedBox(
+                      width: 8.0,
+                    ),
+                    clearOrderButton(),
+                    SizedBox(
+                      width: 8.0,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -183,18 +219,6 @@ class _OrderProductList extends State<OrderProductList> {
     );
   }
 
-  Widget showOrder() {
-    return IconButton(
-        icon: Icon(Icons.shopping_basket),
-        onPressed: () async {
-          print(orderList);
-          var materialPageRoute = MaterialPageRoute(
-              builder: (context) => OrderList(),
-              settings: RouteSettings(arguments: orderList));
-          Navigator.push(context, materialPageRoute);
-        });
-  }
-
   createOrder() async {
     var order = jsonEncode(orderList);
     var response = await http.post(
@@ -204,5 +228,34 @@ class _OrderProductList extends State<OrderProductList> {
     if (response.statusCode == 200) {
       print('success');
     } else {}
+  }
+
+  Widget checkOutButton() {
+    // ignore: deprecated_member_use
+    return RaisedButton(
+      color: Colors.blue.shade800,
+      child: Text('Check Out', style: TextStyle(color: Colors.white)),
+      onPressed: () {
+        var materialPageRoute = MaterialPageRoute(
+            builder: (context) => OrderList(),
+            settings: RouteSettings(arguments: orderList));
+        Navigator.push(context, materialPageRoute);
+      },
+    );
+  }
+
+  Widget clearOrderButton() {
+    // ignore: deprecated_member_use
+    return RaisedButton(
+      color: Colors.yellow.shade400,
+      child: Text('Clear Order', style: TextStyle(color: Colors.black)),
+      onPressed: () {
+        print(orderList[0]['id_shop'].toString());
+        var materialPageRoute = MaterialPageRoute(
+            builder: (context) => ProductShopList(),
+            settings: RouteSettings(arguments: orderList[0]['id_shop']));
+        Navigator.push(context, materialPageRoute);
+      },
+    );
   }
 }

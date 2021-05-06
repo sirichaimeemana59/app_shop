@@ -50,14 +50,22 @@ class _ProductShopList extends State<ProductShopList> {
 //Cart Shop
   // ignore: missing_return
   Future<List<Item>> cartShop(
-      nameProduct, price, id, numberofitems, priceTo) async {
+      // ignore: non_constant_identifier_names
+      nameProduct,
+      price,
+      id,
+      numberofitems,
+      priceTo,
+      // ignore: non_constant_identifier_names
+      id_shop) async {
     values = [
       {
         "nameProduct": nameProduct,
         "price": price,
         "id": id,
         "numberofitems": 1,
-        "priceTo": price
+        "priceTo": price,
+        "id_shop": id_shop
       }
     ];
 
@@ -120,6 +128,8 @@ class _ProductShopList extends State<ProductShopList> {
     var detail = item['detail'];
     var price = item['price'].toString();
     var id = item['id'];
+    // ignore: non_constant_identifier_names
+    var id_shop = item['id_shop'];
     int numberofitems = 0;
     return Card(
       child: Padding(
@@ -179,8 +189,8 @@ class _ProductShopList extends State<ProductShopList> {
                                   color: Colors.blue.shade800),
                               borderRadius: BorderRadius.circular(8)),
                           onPressed: () {
-                             cartShop(nameProduct,price, id, numberofitems,
-                             price);
+                            cartShop(nameProduct, price, id, numberofitems,
+                                price, id_shop);
                             // setState(() {
                             //   idItem = id;
                             //   numItem++;

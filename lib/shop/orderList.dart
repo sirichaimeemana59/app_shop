@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:footer/footer.dart';
 
 class OrderList extends StatefulWidget {
   @override
@@ -52,42 +51,49 @@ class _OrderListState extends State<OrderList> {
                               Expanded(
                                   child: Container(
                                       margin: EdgeInsets.only(
-                                          left: 10, top: 15, bottom: 5),
-                                      child: Text('text'))),
+                                          left: 30, top: 50, bottom: 5),
+                                      child: Text('จำนวนสินค้า :' +
+                                          orderList.length.toString()))),
                             ],
                           ),
                           Row(
                             children: <Widget>[
                               Container(
                                   margin: EdgeInsets.only(
-                                      left: 10, top: 15, bottom: 5),
+                                      left: 30, top: 9, bottom: 5),
                                   child: Text(
-                                    'Price : ',
+                                    'ราคารวม : ' +
+                                        summaryPrice.toString() +
+                                        ' บาท',
                                   )),
-                              Container(
-                                  margin: EdgeInsets.only(
-                                      left: 10, top: 15, bottom: 5),
-                                  child: Text('text')),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Container(
-                                  margin: EdgeInsets.only(
-                                      left: 10, top: 15, bottom: 5),
-                                  child: Text(
-                                    'Amount : ',
-                                  )),
-                              Container(
-                                  margin: EdgeInsets.only(
-                                      left: 10, top: 15, bottom: 5),
-                                  child: Text('text')),
                             ],
                           ),
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  Container(
+                    ///margin: EdgeInsets.all(1),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          //margin: EdgeInsets.all(50),
+                          //width: 40,
+                          child: Center(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                paymentButton(),
+                                SizedBox(
+                                  width: 8.0,
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -101,7 +107,7 @@ class _OrderListState extends State<OrderList> {
     return ListView.builder(
       itemCount: orderList.length,
       itemBuilder: (BuildContext context, int index) {
-        //summaryPrice +=  price;
+        summaryPrice += int.parse(orderList[index]['price']);
         //print(summaryPrice);
         return Container(
           height: 150,
@@ -185,6 +191,20 @@ class _OrderListState extends State<OrderList> {
             ],
           ),
         );
+      },
+    );
+  }
+
+  Widget paymentButton() {
+    // ignore: deprecated_member_use
+    return RaisedButton(
+      color: Colors.blue.shade800,
+      child: Text('Payment', style: TextStyle(color: Colors.white)),
+      onPressed: () {
+        var materialPageRoute = MaterialPageRoute(
+            builder: (context) => OrderList(),
+            settings: RouteSettings(arguments: orderList));
+        Navigator.push(context, materialPageRoute);
       },
     );
   }
