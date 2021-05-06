@@ -1,3 +1,4 @@
+import 'package:app_shop/shop/payment.dart';
 import 'package:flutter/material.dart';
 
 class OrderList extends StatefulWidget {
@@ -7,7 +8,7 @@ class OrderList extends StatefulWidget {
 
 class _OrderListState extends State<OrderList> {
   List orderList = [];
-  int summaryPrice = 0;
+  var totalPrice = 0;
   int price = 0;
   @override
   Widget build(BuildContext context) {
@@ -63,7 +64,7 @@ class _OrderListState extends State<OrderList> {
                                       left: 30, top: 9, bottom: 5),
                                   child: Text(
                                     'ราคารวม : ' +
-                                        summaryPrice.toString() +
+                                        totalPrice.toString() +
                                         ' บาท',
                                   )),
                             ],
@@ -107,8 +108,9 @@ class _OrderListState extends State<OrderList> {
     return ListView.builder(
       itemCount: orderList.length,
       itemBuilder: (BuildContext context, int index) {
-        summaryPrice += int.parse(orderList[index]['price']);
-        //print(summaryPrice);
+        totalPrice += int.parse(orderList[index]['price']);
+        //orderList.add('1');
+        print(totalPrice.toString());
         return Container(
           height: 150,
           width: 150,
@@ -202,7 +204,7 @@ class _OrderListState extends State<OrderList> {
       child: Text('Payment', style: TextStyle(color: Colors.white)),
       onPressed: () {
         var materialPageRoute = MaterialPageRoute(
-            builder: (context) => OrderList(),
+            builder: (context) => PaymentPage(),
             settings: RouteSettings(arguments: orderList));
         Navigator.push(context, materialPageRoute);
       },

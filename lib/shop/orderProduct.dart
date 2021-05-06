@@ -47,11 +47,11 @@ class _OrderProductList extends State<OrderProductList> {
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    checkOutButton(),
+                    clearOrderButton(),
                     SizedBox(
                       width: 8.0,
                     ),
-                    clearOrderButton(),
+                    checkOutButton(),
                     SizedBox(
                       width: 8.0,
                     ),
@@ -69,8 +69,6 @@ class _OrderProductList extends State<OrderProductList> {
     return ListView.builder(
       itemCount: orderList.length,
       itemBuilder: (BuildContext context, int index) {
-        //summaryPrice +=  price;
-        //print(summaryPrice);
         return Container(
           height: 150,
           width: 150,
@@ -163,6 +161,7 @@ class _OrderProductList extends State<OrderProductList> {
                             price = int.parse(orderList[index]['price']) -
                                 int.parse(orderList[index]['priceTo']);
                             orderList[index]['price'] = price.toString();
+                            print('');
                             // orderList[index]['price'] = int.parse(
                             //     orderList[index]['price'] -
                             //         orderList[index]['price']);
@@ -195,8 +194,6 @@ class _OrderProductList extends State<OrderProductList> {
                           price = int.parse(orderList[index]['priceTo']) +
                               int.parse(orderList[index]['price']);
                           orderList[index]['price'] = price.toString();
-
-                          // print(price);
                         });
                       },
                       child: Container(
