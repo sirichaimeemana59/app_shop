@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:app_shop/shop/credit.dart';
 import 'package:app_shop/shop/shipping.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,7 @@ class _PaymentPageState extends State<PaymentPage> {
               orderList.add({"pay": "1"});
               //print(orderList.toString());
               var materialPageRoute = MaterialPageRoute(
-                  builder: (context) => Shipping(),
+                  builder: (context) => CreditCard(),
                   settings: RouteSettings(arguments: orderList));
               Navigator.push(context, materialPageRoute);
             },

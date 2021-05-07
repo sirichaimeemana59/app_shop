@@ -7,14 +7,6 @@ class Success extends StatefulWidget {
 }
 
 class _SuccessState extends State<Success> {
-  Widget showLogo() {
-    return Container(
-      width: 120.0,
-      height: 120.0,
-      child: Image.asset('images/resume.png'),
-    );
-  }
-
   Widget showAppName() {
     return Text(
       'คำสั่งซื้อเสร็จสมบูรณ์',
@@ -46,7 +38,7 @@ class _SuccessState extends State<Success> {
           child: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('images/PetBackground.png'),
+          image: AssetImage('images/success.jpg'),
           fit: BoxFit.cover,
         )),
         child: Center(

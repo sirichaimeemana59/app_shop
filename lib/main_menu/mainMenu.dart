@@ -84,7 +84,7 @@ class _MainMenuState extends State<MainMenu> {
           child: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('images/PetBackground.png'),
+          image: AssetImage('images/home.jpg'),
           fit: BoxFit.cover,
         )),
         child: Center(
